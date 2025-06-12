@@ -1,1 +1,16 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "Gag",
+    LoadingTitle = "Test",
+    LoadingSubtitle = "by Knoowa"
+})
+
+local MainTab = Window:CreateTab("Main", 4483362458) -- The icon is optional; use a Roblox asset ID or leave it out
+
+MainTab:CreateButton({
+    Name = "Click Me!",
+    Callback = function()
+        print("You clicked the button!")
+    end,
+})
