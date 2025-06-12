@@ -70,18 +70,8 @@ MainTab:CreateToggle({
     Callback = function(enabled)
         if enabled then
             enableInfiniteJump()
-            Rayfield:Notify({
-                Title = "Infinite Jump",
-                Content = "Infinite Jump Enabled!",
-                Duration = 3
-            })
         else
             disableInfiniteJump()
-            Rayfield:Notify({
-                Title = "Infinite Jump",
-                Content = "Infinite Jump Disabled.",
-                Duration = 3
-            })
         end
     end,
 })
