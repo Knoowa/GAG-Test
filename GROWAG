@@ -35,3 +35,53 @@ local Window = Rayfield:CreateWindow({
       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
+
+Rayfield:Notify({
+   Title = "You have executed the script🔥",
+   Content = "Cheater ka haa😂",
+   Duration = 5,
+   Image = 4483362458,
+})
+
+local MainTab = Window:CreateTab("Main", 4483362458) -- Title, Image
+
+local infiniteJumpConnection
+
+local function enableInfiniteJump()
+    if infiniteJumpConnection then infiniteJumpConnection:Disconnect() end
+    infiniteJumpConnection = game:GetService("UserInputService").JumpRequest:Connect(function()
+        local player = game.Players.LocalPlayer
+        if player and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+            player.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+        end
+    end)
+end
+
+local function disableInfiniteJump()
+    if infiniteJumpConnection then
+        infiniteJumpConnection:Disconnect()
+        infiniteJumpConnection = nil
+    end
+end
+
+MainTab:CreateToggle({
+    Name = "Infinite Jump",
+    CurrentValue = false,
+    Callback = function(enabled)
+        if enabled then
+            enableInfiniteJump()
+            Rayfield:Notify({
+                Title = "Infinite Jump",
+                Content = "Infinite Jump Enabled!",
+                Duration = 3
+            })
+        else
+            disableInfiniteJump()
+            Rayfield:Notify({
+                Title = "Infinite Jump",
+                Content = "Infinite Jump Disabled.",
+                Duration = 3
+            })
+        end
+    end,
+})
